@@ -1,0 +1,34 @@
+﻿<div class="comment-top">
+    <h4>Bir Yorum Yapın..</h4>
+    <div class="comment-bottom">
+        <form id="CommentForm">
+            <input class="form-control" type="text" name="CommentUserName" placeholder="Adınız Soyadınız" required="">
+            <input class="form-control" type="text" name="CommentTitle" placeholder="Konu" required="">
+            <textarea class="form-control" name="CommentContent" placeholder="Yorumunuz..." required=""></textarea>
+            <button type="submit" id="btn" class="btn btn-primary submit">Yorum Yap</button>
+            <div id="sonuc"></div><br />
+        </form>
+    </div>
+</div>
+<script type="text/javascript">
+
+    $(function () {
+        $("#btn").click(function (e) {
+            var bolum = document.createElement("div");
+            bolum.className = "alert alert-success";
+            bolum.innerHTML = "Kayıt Başarılı...";
+            document.body.appendChild(bolum);
+            e.preventDefault();
+            var veri = $("#CommentForm").serialize();
+            $.ajax({
+                type: "post",
+                url: "/Comment/PartialAddComment/",
+                data: veri,
+                success: function (f) {
+                    $("#sonuc").html(bolum);
+                    setTimeout(() => { window.location.reload() }, 3000);
+                }
+            });
+        });
+    });
+</script>

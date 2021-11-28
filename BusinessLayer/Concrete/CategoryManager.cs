@@ -1,10 +1,10 @@
-﻿using BusinessLayer.Abstract;
-using DataAccessLayer.Abstract;
-using DataAccessLayer.EntityFramework;
-using EntityLayer.Concrete;
-using System;
-using System.Collections.Generic;
+﻿
 
+
+using BusinessLayer.Abstract;
+using DataAccessLayer.Abstract;
+using EntityLayer.Concrete;
+using System.Collections.Generic;
 
 namespace BusinessLayer.Concrete
 {
