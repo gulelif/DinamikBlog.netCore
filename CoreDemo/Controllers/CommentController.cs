@@ -23,13 +23,13 @@ namespace CoreDemo.Controllers
             return PartialView();
         }
         [HttpPost]
-        public IActionResult PartialAddComment(Comment p)
+        public IActionResult PartialAddComment([FromForm] Comment p)
         {
             p.CommetDate = DateTime.Parse(DateTime.Now.ToShortDateString());
             p.CommentStatus = true;
-            p.BlogID = 2;
+           
             cm.CommentAdd(p);
-            return RedirectToAction("BlogReadAll", "Blog", new { id = p.BlogID });
+            return PartialView();
         }
         public PartialViewResult CommentListByBlog(int id)
         {

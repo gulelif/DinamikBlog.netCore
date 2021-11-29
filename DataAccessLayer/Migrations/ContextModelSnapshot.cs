@@ -110,26 +110,6 @@ namespace DataAccessLayer.Migrations
                     b.ToTable("Categories");
                 });
 
-            modelBuilder.Entity("EntityLayer.Concrete.City", b =>
-                {
-                    b.Property<int>("CityID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("CityName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("WriterID")
-                        .HasColumnType("int");
-
-                    b.HasKey("CityID");
-
-                    b.HasIndex("WriterID");
-
-                    b.ToTable("Cities");
-                });
-
             modelBuilder.Entity("EntityLayer.Concrete.Comment", b =>
                 {
                     b.Property<int>("CommentID")
@@ -220,6 +200,9 @@ namespace DataAccessLayer.Migrations
                     b.Property<string>("WriterAbout")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("WriterCity")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("WriterImage")
                         .HasColumnType("nvarchar(max)");
 
@@ -259,17 +242,6 @@ namespace DataAccessLayer.Migrations
                     b.Navigation("Writers");
                 });
 
-            modelBuilder.Entity("EntityLayer.Concrete.City", b =>
-                {
-                    b.HasOne("EntityLayer.Concrete.Writer", "Writer")
-                        .WithMany("Cities")
-                        .HasForeignKey("WriterID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Writer");
-                });
-
             modelBuilder.Entity("EntityLayer.Concrete.Comment", b =>
                 {
                     b.HasOne("EntityLayer.Concrete.Blog", "Blog")
@@ -294,8 +266,6 @@ namespace DataAccessLayer.Migrations
             modelBuilder.Entity("EntityLayer.Concrete.Writer", b =>
                 {
                     b.Navigation("Blogs");
-
-                    b.Navigation("Cities");
                 });
 #pragma warning restore 612, 618
         }
